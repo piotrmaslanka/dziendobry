@@ -37,7 +37,7 @@ if __name__ == '__main__':
     try:
         port6000 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         port6000.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        port6000.bind(('', 5000))
+        port6000.bind(('', 6000))
         ports_to_listen.append(port6000)
     except socket.error:
         pass
@@ -45,7 +45,7 @@ if __name__ == '__main__':
     try:
         port7000 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         port7000.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        port7000.bind(('', 5000))
+        port7000.bind(('', 7000))
         ports_to_listen.append(port7000)
     except socket.error:
         pass
@@ -53,7 +53,7 @@ if __name__ == '__main__':
     # Select on them
 
     while True:
-        rx, ws, xs = select.select(ports_to_listen, ports_to_listen, [], 10)
+        rx, ws, xs = select.select(ports_to_listen, [], [], 10)
 
         for r in rx:
             data, addr = r.recvfrom(1024)
