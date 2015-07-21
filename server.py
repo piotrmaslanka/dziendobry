@@ -6,7 +6,7 @@ See README for protocol specification, COPYING for license.
 """
 
 services = {
-    '50985b5c-b8ac-4e12-af6f-127a4e53193f': ''      # Sample Service
+    '0ababec8-0851-4818-9c62-5bbd82cd3687': ''      # SMOK Z
 }
 
 import uuid, struct, socket, select
@@ -20,7 +20,7 @@ if __name__ == '__main__':
     services = ns
 
     # Construct a response packet
-    rp = 'WITAMUPRZEJMIE\x00'
+    rp = 'WITAMUPRZEJMIE'
     for k, v in services.iteritems():
         rp = rp + chr(16 + len(v)) + k.bytes + v
 
@@ -82,7 +82,7 @@ if __name__ == '__main__':
                     resp_port, = struct.unpack('!H', data[2:4])
                     data = data[4:]     # cut out port
 
-            if resp_ip == None: # We shouldn't respond
+            if resp_ip is None:  # We shouldn't respond
                 continue
 
             # We can respond

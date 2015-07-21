@@ -3,6 +3,8 @@ DZIENDOBRY
 
 _DZIENDOBRY_ is a simple but robust service discovery protocol. Service discovery is initiated by sending a specific UDP packet onto either port 5000, 6000 or 7000, and waiting for server's response. Particular services are identified by their UUID's. _DZIENDOBRY_ can also store a string associated with a given service, that will be included in the response.
 
+Use *server.py* to advertise services, use *client.py* to detect them.
+
 The Protocol
 ------------
 
@@ -26,8 +28,8 @@ Server, after deciding to respond, will respond with a UDP unicast response to I
 byte[] 'WITAMUPRZEJMIE'
 sequence of
     byte    RecordLength
-    byte[8] ServiceUUID
-    byte[RecordLength-8] AdditionalServiceInfo
+    byte[16] ServiceUUID
+    byte[RecordLength-16] AdditionalServiceInfo
 ```
 
 This will enumerate all services present on this server. Extra data can be specified by AdditionalServiceInfo field, but this is service-dependent.
