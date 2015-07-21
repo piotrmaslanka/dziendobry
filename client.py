@@ -77,7 +77,7 @@ KNOWN_SERVICES = {
 }
 
 if __name__ == '__main__':
-    for serv in Scanner().discover(wait_time=4):
+    for serv in Scanner().discover(wait_time=10):
         if serv.service_uuid in KNOWN_SERVICES:
             print('[%s] %s by %s. Extras=%s' % (serv.ip_address,
                                      KNOWN_SERVICES[serv.service_uuid][0],
@@ -88,3 +88,5 @@ if __name__ == '__main__':
             print('[%s] %s. Extras=%s' % (serv.ip_address,
                                           serv.service_uuid,
                                           repr(serv.extra_info)))
+    print('Discovery complete, press [ENTER]')
+    raw_input()
